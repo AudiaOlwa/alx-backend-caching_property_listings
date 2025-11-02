@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
+from django.http import JsonResponse
 from .models import Property
-# Create your views here.
 
-
-
-@cache_page(60 * 15)  # cache for 15 minutes
+@cache_page(60 * 15)
 def property_list(request):
-    properties = Property.objects.all()
-    return render(request, "properties/property_list.html", {"properties": properties})
+    properties = Property.objects.all().values('id', 'title', 'price', 'location')
+
+    data = list(properties)  # convertir QuerySet en liste
+    return JsonResponse({"data": data})
