@@ -1,0 +1,10 @@
+<h1>Property Listings</h1>
+<ul>
+  {% for property in properties %}
+    <li>
+      <strong>{{ property.title }}</strong> — {{ property.price }} — {{ property.location }}
+    </li>
+  {% empty %}
+    <li>No properties found</li>
+  {% endfor %}
+</ul>
