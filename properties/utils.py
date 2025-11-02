@@ -29,9 +29,9 @@ def get_redis_cache_metrics():
     total_requests = hits + misses
     hit_ratio = hits / total_requests if total_requests > 0 else 0
 
-    # Log metrics correctement
-    logger.info(f"Redis Cache Metrics: Hits={hits}, Misses={misses}, Hit Ratio={hit_ratio:.2f}")
-
+    # Log metrics avec logger.error comme demandé
+    logger.error(f"Redis Cache Metrics: Hits={hits}, Misses={misses}, Hit Ratio={hit_ratio:.2f}")
+    
     return {
         'hits': hits,
         'misses': misses,
